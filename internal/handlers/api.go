@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/TheGroobi/go-api/internal/middleware"
+	"go-api/internal/middleware"
 	"github.com/go-chi/chi"
 	chimiddle "github.com/go-chi/chi/middleware"
 )

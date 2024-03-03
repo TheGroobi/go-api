@@ -2,17 +2,17 @@ package middleware
 
 import (
 	"errors"
-	"go-api/api"
 	"net/http"
 
-	"github.com/TheGroobi/go-api/api"
-	"github.com/TheGroobi/go-api/internal/tools"
+	"go-api/api"
+	"go-api/internal/tools"
+
 	log "github.com/sirupsen/logrus"
 )
 
-var UnAuthorizedError = errors.New("Invalid username or token.")
+var UnAuthorizedError = errors.New("invalid username or token.")
 
-func Authorization(next http.Handler) {
+func Authorization(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 		var username string = r.URL.Query().Get("username")
@@ -32,8 +32,7 @@ func Authorization(next http.Handler) {
 			return
 		}
 
-		var loginDetails *tools.loginDetails
-		loginDetails = (*database).GetUserLoginDetails(username)
+		var loginDetails *tools.LoginDetails = (*database).GetUserLoginDetails(username)
 
 		if loginDetails == nil || (token != (*loginDetails).AuthToken) {
 			log.Error(UnAuthorizedError)

@@ -6,8 +6,6 @@ import (
 	"go-api/internal/tools"
 	"net/http"
 
-	"github.com/TheGroobi/go-api/api"
-	"github.com/TheGroobi/go-api/internal/tools"
 	"github.com/gorilla/schema"
 	log "github.com/sirupsen/logrus"
 )
