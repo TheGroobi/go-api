@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"../../internal/handlers"
+	"github.com/TheGroobi/go-api/internal/handlers"
 	"github.com/go-chi/chi"
 	log "github.com/sirupsen/logrus"
 )
 
 func main() {
 	log.SetReportCaller(true)
-	var router *chi.Mux = chi.NewRouter()
-	handlers.Handler()
+	var r *chi.Mux = chi.NewRouter()
+	handlers.Handler(r)
 
 	fmt.Println("Starting GO API service...")
 
@@ -26,7 +26,7 @@ $$ |  $$ |$$ |  $$ |      $$ |  $$ |$$ |      $$ |
 \$$$$$$  | $$$$$$  |      $$ |  $$ |$$ |    $$$$$$\ 
  \______/  \______/       \__|  \__|\__|    \______|`)
 
-	err := http.ListenAndServe("localhost:8000", router)
+	err := http.ListenAndServe("localhost:8000", r)
 	if err != nil {
 		log.Error(err)
 	}
